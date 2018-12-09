@@ -1,0 +1,29 @@
+{% extends "layout.html.twig" %}
+
+{% block body %}
+<div class="container-fluid">
+	<div class="row justify-content-md-center" id="typeTicket">
+		<div class="col-lg-12">
+			<h2>Types de bilets</h2>
+		</div>
+		{% block booking_tickets %}
+        {% endblock %}
+    </div>
+
+	<div class="row justify-content-md-center" id="priceTicket">
+		<div class="col-lg-12">
+			<h2>Tarifs</h2>
+		</div>
+		{% block booking_prices %}
+        {% endblock %}
+	</div>
+
+	<div class="row" id="booking">
+		<div class="col-lg-12">
+			<h2>Réservation</h2>
+		</div>
+		{% block booking_steps %}
+        {% endblock %}
+	</div>
+</div>
+{% endblock %}
