@@ -1,3 +1,3 @@
 louvre_booking_homepage:
     path:     /
-    defaults: { _controller: LouvreBookingBundle:Default:index }
+    defaults: { _controller: LouvreBookingBundle:Booking:index }
