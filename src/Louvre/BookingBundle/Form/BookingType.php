@@ -8,7 +8,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class BookingType extends AbstractType
 {
@@ -21,8 +20,7 @@ class BookingType extends AbstractType
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
             ->add('country', CountryType::class)
-            ->add('birthdate', BirthdayType::class, array('format' => 'dd / MM / yyyy', 'data' => new \DateTime()))
-            ->add('ajouter', SubmitType::class);
+            ->add('birthdate', BirthdayType::class, array('format' => 'dd / MM / yyyy', 'data' => new \DateTime()));
     }
 
     /**

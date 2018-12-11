@@ -56,6 +56,10 @@ class Buyer
      */
     private $bookingNumber;
 
+    public function __construct()
+    {
+        $this->bookingNumber = mt_rand();
+    }
 
     /**
      * Get id
