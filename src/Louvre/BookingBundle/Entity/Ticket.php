@@ -24,9 +24,9 @@ class Ticket
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
-    private $type;
+    private $name;
 
     /**
      * @var \DateTime
@@ -47,27 +47,27 @@ class Ticket
     }
 
     /**
-     * Set type
+     * Set name
      *
-     * @param string $type
+     * @param string $name
      *
      * @return Ticket
      */
-    public function setType($type)
+    public function setName($name)
     {
-        $this->type = $type;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get type
+     * Get name
      *
      * @return string
      */
-    public function getType()
+    public function getName()
     {
-        return $this->type;
+        return $this->name;
     }
 
     /**
