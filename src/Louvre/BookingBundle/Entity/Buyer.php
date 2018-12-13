@@ -53,13 +53,10 @@ class Buyer
      * @var string
      *
      * @ORM\Column(name="booking_number", type="string", length=255, unique=true)
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     private $bookingNumber;
 
-    public function __construct()
-    {
-        $this->bookingNumber = mt_rand();
-    }
 
     /**
      * Get id
