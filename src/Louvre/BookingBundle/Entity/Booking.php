@@ -49,6 +49,24 @@ class Booking
      */
     private $birthdate;
 
+    /**
+     *@ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Ticket")
+     *@ORM\JoinColumn(nullable=false)
+     */
+    private $ticket;
+
+    /**
+     *@ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Price")
+     *@ORM\JoinColumn(nullable=false)
+     */
+    private $price;
+
+    /**
+     *@ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Buyer")
+     *@ORM\JoinColumn(nullable=false)
+     */
+    private $buyer;
+
 
     /**
      * Get id
@@ -155,5 +173,76 @@ class Booking
     {
         return $this->birthdate;
     }
-}
 
+    /**
+     * Set ticket
+     *
+     * @param \Louvre\BookingBundle\Entity\Ticket $ticket
+     *
+     * @return Booking
+     */
+    public function setTicket(\Louvre\BookingBundle\Entity\Ticket $ticket)
+    {
+        $this->ticket = $ticket;
+
+        return $this;
+    }
+
+    /**
+     * Get ticket
+     *
+     * @return \Louvre\BookingBundle\Entity\Ticket
+     */
+    public function getTicket()
+    {
+        return $this->ticket;
+    }
+
+    /**
+     * Set price
+     *
+     * @param \Louvre\BookingBundle\Entity\Price $price
+     *
+     * @return Booking
+     */
+    public function setPrice(\Louvre\BookingBundle\Entity\Price $price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return \Louvre\BookingBundle\Entity\Price
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set buyer
+     *
+     * @param \Louvre\BookingBundle\Entity\Buyer $buyer
+     *
+     * @return Booking
+     */
+    public function setBuyer(\Louvre\BookingBundle\Entity\Buyer $buyer)
+    {
+        $this->buyer = $buyer;
+
+        return $this;
+    }
+
+    /**
+     * Get buyer
+     *
+     * @return \Louvre\BookingBundle\Entity\Buyer
+     */
+    public function getBuyer()
+    {
+        return $this->buyer;
+    }
+}
