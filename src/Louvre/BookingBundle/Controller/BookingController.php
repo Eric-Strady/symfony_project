@@ -28,6 +28,6 @@ class BookingController extends Controller
 			return $this->redirectToRoute('louvre_booking_homepage');
     	}
 
-        return $this->render('@LouvreBooking/Booking/index.html.twig', array('form' => $form->createView()));
+        return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView()));
     }
 }
