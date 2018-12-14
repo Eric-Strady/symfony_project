@@ -3,6 +3,7 @@
 namespace Louvre\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Buyer
@@ -57,6 +58,19 @@ class Buyer
      */
     private $bookingNumber;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Louvre\BookingBundle\Entity\Booking", mappedBy="buyer")
+     */
+    private $bookings;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->bookings = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -187,5 +201,39 @@ class Buyer
     {
         return $this->bookingNumber;
     }
-}
 
+    /**
+     * Add booking
+     *
+     * @param \Louvre\BookingBundle\Entity\Booking $booking
+     *
+     * @return Buyer
+     */
+    public function addBooking(\Louvre\BookingBundle\Entity\Booking $booking)
+    {
+        $this->bookings[] = $booking;
+        $booking->setBuyer($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove booking
+     *
+     * @param \Louvre\BookingBundle\Entity\Booking $booking
+     */
+    public function removeBooking(\Louvre\BookingBundle\Entity\Booking $booking)
+    {
+        $this->bookings->removeElement($booking);
+    }
+
+    /**
+     * Get bookings
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBookings()
+    {
+        return $this->bookings;
+    }
+}

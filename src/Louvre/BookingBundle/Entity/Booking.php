@@ -62,7 +62,7 @@ class Booking
     private $price;
 
     /**
-     *@ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Buyer")
+     *@ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Buyer", inversedBy="bookings")
      *@ORM\JoinColumn(nullable=false)
      */
     private $buyer;
