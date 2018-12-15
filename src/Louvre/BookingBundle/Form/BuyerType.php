@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Louvre\BookingBundle\Form\BookingType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class BuyerType extends AbstractType
@@ -21,7 +23,11 @@ class BuyerType extends AbstractType
             ->add('date', DateType::class, array('format' => 'dd / MM / yyyy', 'data' => new \DateTime()))
             ->add('email', EmailType::class)
             ->add('quantity', IntegerType::class)
-            ->add('ajouter', SubmitType::class);
+            ->add('bookings', CollectionType::class, array(
+                'entry_type' => BookingType::class,
+                'allow_add' => true,
+                'allow_delete' => true))
+            ->add('reserver',SubmitType::class);
     }
 
     /**
