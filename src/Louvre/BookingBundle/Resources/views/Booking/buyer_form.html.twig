@@ -21,6 +21,10 @@
             </div>
         </div>
 
+        <a href="#" id="validate_step"><i class="far fa-check-circle fa-5x"></i></a>
+
+        {{ form_row(form.bookings) }}
+
         <div class="row form-group">
             {{ form_label(form.email, "Adresse e-mail", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
             {{ form_errors(form.email) }}
@@ -29,7 +33,7 @@
             </div>
         </div>
 
-        {{ form_widget(form.ajouter, {'attr': {'class': 'btn btn-primary'}}) }}
+        {{ form_widget(form.reserver, {'attr': {'class': 'btn btn-primary'}}) }}
         {{ form_rest(form) }}
         {{ form_end(form) }}
 	</div>
