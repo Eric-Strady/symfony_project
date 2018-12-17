@@ -37,6 +37,13 @@ class Buyer
     private $email;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="type_ticket", type="string", length=255)
+     */
+    private $typeTicket;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="quantity", type="integer")
@@ -54,12 +61,11 @@ class Buyer
      * @var string
      *
      * @ORM\Column(name="booking_number", type="string", length=255, unique=true)
-     * @ORM\GeneratedValue(strategy="UUID")
      */
     private $bookingNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="Louvre\BookingBundle\Entity\Booking", mappedBy="buyer")
+     * @ORM\OneToMany(targetEntity="Louvre\BookingBundle\Entity\Booking", mappedBy="buyer", cascade={"persist"})
      */
     private $bookings;
 
@@ -128,6 +134,30 @@ class Buyer
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set typeTicket
+     *
+     * @param string $typeTicket
+     *
+     * @return Buyer
+     */
+    public function setTypeTicket($typeTicket)
+    {
+        $this->typeTicket = $typeTicket;
+
+        return $this;
+    }
+
+    /**
+     * Get typeTicket
+     *
+     * @return string
+     */
+    public function getTypeTicket()
+    {
+        return $this->typeTicket;
     }
 
     /**

@@ -51,13 +51,11 @@ class Booking
 
     /**
      *@ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Ticket")
-     *@ORM\JoinColumn(nullable=false)
      */
     private $ticket;
 
     /**
      *@ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Price")
-     *@ORM\JoinColumn(nullable=false)
      */
     private $price;
 

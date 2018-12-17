@@ -17,9 +17,15 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName', TextType::class)
-            ->add('lastName', TextType::class)
-            ->add('country', CountryType::class)
+            ->add('firstName', TextType::class, array(
+                'attr' => array(
+                    'class' => 'form-control')))
+            ->add('lastName', TextType::class, array(
+                'attr' => array(
+                    'class' => 'form-control')))
+            ->add('country', CountryType::class, array(
+                'attr' => array(
+                    'class' => 'form-control')))
             ->add('birthdate', BirthdayType::class, array('format' => 'dd / MM / yyyy', 'data' => new \DateTime()));
     }
 
@@ -40,6 +46,5 @@ class BookingType extends AbstractType
     {
         return 'louvre_bookingbundle_booking';
     }
-
 
 }

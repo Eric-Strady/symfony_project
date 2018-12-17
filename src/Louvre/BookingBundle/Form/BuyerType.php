@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Louvre\BookingBundle\Form\BookingType;
@@ -20,14 +21,22 @@ class BuyerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', DateType::class, array('format' => 'dd / MM / yyyy', 'data' => new \DateTime()))
+            ->add('date', DateType::class, array(
+                'format' => 'dd / MM / yyyy',
+                'data' => new \DateTime()))
             ->add('email', EmailType::class)
+            ->add('typeTicket', ChoiceType::class, array(
+                'choices' => array(
+                    'Billet Journée' => 'BJ', 'Billet Demi-Journée' => 'BDJ')))
             ->add('quantity', IntegerType::class)
             ->add('bookings', CollectionType::class, array(
                 'entry_type' => BookingType::class,
                 'allow_add' => true,
                 'allow_delete' => true))
-            ->add('reserver',SubmitType::class);
+            ->add('paid',SubmitType::class, array(
+                'attr' => array(
+                    'class' => 'btn btn-primary')
+            ));
     }
 
     /**
