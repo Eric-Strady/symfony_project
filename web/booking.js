@@ -4,34 +4,56 @@ $(function(){
 
     $('#visitorForm').click(function()
     {
+        var container = $('div#louvre_bookingbundle_buyer_bookings');
+        var count = container.children('div').length;
         var nbVisitors = $('#louvre_bookingbundle_buyer_quantity').val();
 
-        if (nbVisitors > 0 && nbVisitors < 30)
+        if (count > 0)
         {
-            $('#step4').fadeIn('slow');
-            var container = $('div#louvre_bookingbundle_buyer_bookings');
-            var count = container.find(':input').length;
-
-            addVisitorForm(container, nbVisitors);
+            if (nbVisitors > count)
+            {
+                addVisitorForm(nbVisitors, count, container);
+            }
+            else
+            {
+                deleteVisitorForm(nbVisitors, count, container);
+            }
         }
         else
         {
-            alert('Vous devez sasir un nombre de visiteurs entre 0 et 30 !');
-        }    	
+            if (nbVisitors > 0 && nbVisitors < 30)
+            {
+                $('#step4').fadeIn('slow');
+                
+                addVisitorForm(nbVisitors, count, container);
+            }
+            else
+            {
+                alert('Vous devez sasir un nombre de visiteurs entre 0 et 30 !');
+            } 
+        }   	
     });
 
-    function addVisitorForm(container, nbVisitors)
+    function addVisitorForm(nbVisitors, count, container)
     {
-        for (var i = 1; i <= nbVisitors; i++)
+        for (count; count < nbVisitors; count++)
         {
             var builder = container.attr('data-prototype')
-                .replace(/__name__label__/g, 'Visiteur n°' + (i))
-                .replace(/__name__/g, i);
+                .replace(/__name__label__/g, 'Visiteur n°' + (count+1))
+                .replace(/__name__/g, (count+1));
 
             var visitorForm = $(builder);
 
             container.append(visitorForm);
         } 
+    }
+
+    function deleteVisitorForm(nbVisitors, count, container)
+    {
+        for (nbVisitors; nbVisitors < count; nbVisitors++)
+        {
+            container.children('div').last().remove();
+        }
     }
 
     $('#emailForm').click(function()
