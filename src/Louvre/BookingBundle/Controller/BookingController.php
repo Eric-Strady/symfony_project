@@ -21,6 +21,11 @@ class BookingController extends Controller
     	{
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($buyer);
+            foreach ($buyer->getBookings() as $booking)
+            {
+                $booking->setBuyer($buyer);
+                $em->persist($booking);
+            }
 			$em->flush();
 
 			$request->getSession()->getFlashBag()->add('booked', 'Votre réservation a bien été prise en compte !');
