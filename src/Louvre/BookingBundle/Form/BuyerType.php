@@ -8,7 +8,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Louvre\BookingBundle\Form\BookingType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -23,12 +22,27 @@ class BuyerType extends AbstractType
         $builder
             ->add('date', DateType::class, array(
                 'format' => 'dd / MM / yyyy',
-                'data' => new \DateTime()))
+                'widget' => 'single_text'))
             ->add('email', EmailType::class)
             ->add('typeTicket', ChoiceType::class, array(
                 'choices' => array(
-                    'Billet Journée' => 'BJ', 'Billet Demi-Journée' => 'BDJ')))
-            ->add('quantity', IntegerType::class)
+                    'Billet Journée' => 'BJ',
+                    'Billet Demi-Journée' => 'BDJ'
+                )))
+            ->add('quantity', ChoiceType::class, array(
+                'required' => true,
+                'choices' => array(
+                    '1' => 1,
+                    '2' => 2,
+                    '3' => 3,
+                    '4' => 4,
+                    '5' => 5,
+                    '6' => 6,
+                    '7' => 7,
+                    '8' => 8,
+                    '9' => 9,
+                    '10'=> 10
+                )))
             ->add('bookings', CollectionType::class, array(
                 'entry_type' => BookingType::class,
                 'allow_add' => true,
