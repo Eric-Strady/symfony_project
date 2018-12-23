@@ -2,6 +2,20 @@ $(function(){
 	$('#step4').hide();
 	$('#step5').hide();
 
+    $('#louvre_bookingbundle_buyer_date').datepicker({
+        autosize: true,
+        hideIfNoPrevNext: true,
+        duration: 'slow',
+        showAnim: 'slideDown',
+        dayNames: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
+        dayNamesMin: ['lu', 'ma', 'me', 'je', 've', 'sa', 'di'],
+        monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+        monthNamesShort: ['Janv', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Jui', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
+        firstDay: 0,
+        minDate: '-0d',
+        maxDate: '+1y',
+    });
+
     $('#visitorForm').click(function()
     {
         var container = $('div#louvre_bookingbundle_buyer_bookings');
