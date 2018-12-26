@@ -21,8 +21,10 @@ class BuyerType extends AbstractType
     {
         $builder
             ->add('date', DateType::class, array(
-                'format' => 'dd / MM / yyyy',
-                'widget' => 'single_text'))
+                'widget' => 'single_text',
+                'html5' => true,
+                'format' => 'dd/MM/yyyy'
+            ))
             ->add('email', EmailType::class)
             ->add('typeTicket', ChoiceType::class, array(
                 'choices' => array(

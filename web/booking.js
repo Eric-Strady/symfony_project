@@ -2,18 +2,37 @@ $(function(){
 	$('#step4').hide();
 	$('#step5').hide();
 
+    $.datepicker.regional['fr'] = {
+        dayNames: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
+        dayNamesShort: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+        dayNamesMin: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
+        monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+        monthNamesShort: ['Jan', 'Févr', 'Mar', 'Avr', 'Mai', 'Jun', 'Jui', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
+        dateFormat: 'dd/mm/yy'
+    };
+
+    $.datepicker.setDefaults($.datepicker.regional['fr']);
+
     $('#louvre_bookingbundle_buyer_date').datepicker({
         autosize: true,
         hideIfNoPrevNext: true,
         duration: 'slow',
-        showAnim: 'slideDown',
-        dayNames: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
-        dayNamesMin: ['lu', 'ma', 'me', 'je', 've', 'sa', 'di'],
-        monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-        monthNamesShort: ['Janv', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Jui', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
         firstDay: 0,
         minDate: '-0d',
         maxDate: '+1y',
+        beforeShowDay: function(d) {
+            var publicHoliday = ['05-01', '11-01', '12-25'];
+
+            return [ 
+                d.getDay() === 0 ||
+                d.getDay() === 2 ||
+                d.getDay() === 3 ||
+                d.getDay() === 4 ||
+                d.getDay() === 5 ||
+                disableDays(d, publicHoliday),
+                ''
+            ];
+        }
     });
 
     $('#visitorForm').click(function()
