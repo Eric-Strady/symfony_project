@@ -23,15 +23,16 @@ $(function(){
         beforeShowDay: function(d) {
             var publicHoliday = ['05-01', '11-01', '12-25'];
 
-            return [ 
-                d.getDay() === 0 ||
-                d.getDay() === 2 ||
-                d.getDay() === 3 ||
-                d.getDay() === 4 ||
-                d.getDay() === 5 ||
-                disableDays(d, publicHoliday),
-                ''
-            ];
+            if (d.getDay() === 1 || d.getDay() === 6)
+            {
+                return [false, ''];
+            }
+            else
+            {
+                var date = $.datepicker.formatDate('mm-dd', d);
+
+                return [publicHoliday.indexOf(date) === -1]
+            }
         }
     });
 
