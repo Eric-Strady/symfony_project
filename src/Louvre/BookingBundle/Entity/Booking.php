@@ -3,6 +3,7 @@
 namespace Louvre\BookingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Booking
@@ -25,6 +26,9 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=255)
+     * @Assert\NotBlank(message="Votre prénom ne doit pas être vide !")
+     * @Assert\Type(type="string", message="'{{ value }}' n'est pas une chaîne de caractères.")
+     * @Assert\Length(max=255, maxMessage="Votre prénom ne doit pas dépasser {{ limit }} caractères.")
      */
     private $firstName;
 
@@ -32,6 +36,9 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=255)
+     * @Assert\NotBlank(message="Votre nom ne doit pas être vide !")
+     * @Assert\Type(type="string", message="'{{ value }}' n'est pas une chaîne de caractères.")
+     * @Assert\Length(max=255, maxMessage="Votre nom ne doit pas dépasser {{ limit }} caractères.")
      */
     private $lastName;
 
@@ -39,6 +46,8 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     * @Assert\NotBlank(message="{{ value }} ne doit pas être vide !")
+     * @Assert\Country(message="{{ value }} ne n'est pas un pays valide.")
      */
     private $country;
 
@@ -46,22 +55,16 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(name="birthdate", type="date")
+     * @Assert\NotBlank(message="Votre date d'anniversaire ne doit pas être vide !")
+     * @Assert\Date(message="La date '{{ value }}' n'est pas une date valide.")
      */
     private $birthdate;
 
     /**
-     *@ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Ticket")
-     */
-    private $ticket;
-
-    /**
-     *@ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Price")
-     */
-    private $price;
-
-    /**
-     *@ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Buyer", inversedBy="bookings")
-     *@ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Buyer", inversedBy="bookings")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="{{ value }} ne doit pas être vide !")
+     * @Assert\Type(type="object", message="'{{ value }}' n'est pas objet.")
      */
     private $buyer;
 
@@ -170,54 +173,6 @@ class Booking
     public function getBirthdate()
     {
         return $this->birthdate;
-    }
-
-    /**
-     * Set ticket
-     *
-     * @param \Louvre\BookingBundle\Entity\Ticket $ticket
-     *
-     * @return Booking
-     */
-    public function setTicket(\Louvre\BookingBundle\Entity\Ticket $ticket)
-    {
-        $this->ticket = $ticket;
-
-        return $this;
-    }
-
-    /**
-     * Get ticket
-     *
-     * @return \Louvre\BookingBundle\Entity\Ticket
-     */
-    public function getTicket()
-    {
-        return $this->ticket;
-    }
-
-    /**
-     * Set price
-     *
-     * @param \Louvre\BookingBundle\Entity\Price $price
-     *
-     * @return Booking
-     */
-    public function setPrice(\Louvre\BookingBundle\Entity\Price $price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return \Louvre\BookingBundle\Entity\Price
-     */
-    public function getPrice()
-    {
-        return $this->price;
     }
 
     /**

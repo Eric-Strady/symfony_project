@@ -27,7 +27,7 @@ class Buyer
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date")
-     * @Assert\NotBlank(message="{{ value }} ne doit pas être vide !")
+     * @Assert\NotBlank(message="La date de visite ne doit pas être vide !")
      * @Assert\Date(message="La date '{{ value }}' n'est pas une date valide.")
      */
     private $date;
@@ -36,7 +36,7 @@ class Buyer
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\NotBlank(message="{{ value }} ne doit pas être vide !")
+     * @Assert\NotBlank(message="Votre adresse e-mail ne doit pas être vide !")
      * @Assert\Length(max=255, maxMessage="{{ value }} ne doit pas dépasser {{ limit }} caractères.")
      * @Assert\Email(message="L'email '{{ value }}' n'est pas un email valide.")
      */
@@ -46,7 +46,7 @@ class Buyer
      * @var string
      *
      * @ORM\Column(name="type_ticket", type="string", length=3)
-     * @Assert\NotBlank(message="{{ value }} ne doit pas être vide !")
+     * @Assert\NotBlank(message="Vous devez obligatoirement choisir un type de billet !")
      * @Assert\Type(type="string", message="'{{ value }}' n'est pas une chaîne de caractères.")
      * @Assert\Length(max=3, maxMessage="Vous devez sélectionner soit la billet journée, soit le billet demi-journée.")
      */
@@ -56,7 +56,7 @@ class Buyer
      * @var int
      *
      * @ORM\Column(name="quantity", type="integer")
-     * @Assert\NotBlank(message="{{ value }} ne doit pas être vide !")
+     * @Assert\NotBlank(message="Le nombre de visiteurs ne doit pas être vide !")
      * @Assert\Type(type="integer", message="'{{ value }}' n'est pas un nombre.")
      * @Assert\Range(min=1, max=10, minMessage="'{{ value }}' ne doit pas être inférieur à {{ limit }}", maxMessage="{{ value }}' ne doit pas être supérieur à {{ limit }}")
      */
@@ -66,7 +66,7 @@ class Buyer
      * @var int
      *
      * @ORM\Column(name="total_price", type="integer")
-     * @Assert\NotBlank(message="{{ value }} ne doit pas être vide !")
+     * @Assert\NotBlank(message="Le prix total ne doit pas être vide !")
      * @Assert\Type(type="integer", message="'{{ value }}' n'est pas un nombre.")
      * @Assert\GreaterThan(value=0, message="'{{ value }}' doit obligatoirement être supérieur à {{ compared_value }} €.")
      */
@@ -76,7 +76,7 @@ class Buyer
      * @var string
      *
      * @ORM\Column(name="booking_number", type="string", length=255, unique=true)
-     * @Assert\NotBlank(message="{{ value }} ne doit pas être vide !")
+     * @Assert\NotBlank(message="Le numéro de réservation ne doit pas être vide !")
      * @Assert\Type(type="string", message="'{{ value }}' n'est pas une chaîne de caractères.")
      * @Assert\Length(max=255, maxMessage="Le numéro de réservation ne doit pas dépasser {{ limit }} caractères.")
      */
