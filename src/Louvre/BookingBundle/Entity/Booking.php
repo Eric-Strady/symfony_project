@@ -65,6 +65,7 @@ class Booking
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank(message="{{ value }} ne doit pas être vide !")
      * @Assert\Type(type="object", message="'{{ value }}' n'est pas objet.")
+     * @Assert\Valid()
      */
     private $buyer;
 
