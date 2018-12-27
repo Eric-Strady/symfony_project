@@ -55,7 +55,7 @@ $(function(){
         }
         else
         {
-            if (nbVisitors > 0 && nbVisitors < 30)
+            if (nbVisitors > 0 && nbVisitors < 10)
             {
                 $('#step4').fadeIn('slow');
                 
@@ -63,7 +63,7 @@ $(function(){
             }
             else
             {
-                alert('Vous devez sasir un nombre de visiteurs entre 0 et 30 !');
+                alert('Vous devez sasir un nombre de visiteurs entre 0 et 10 !');
             } 
         }   	
     });
