@@ -40,9 +40,13 @@ class CalculatePrice
 		{
 			return self::CHILD_PRICE;
 		}
-		elseif ($diffYear > self::CHILD_AGE)
+		elseif ($diffYear >= self::SENIOR_AGE)
 		{
 			return self::SENIOR_PRICE;
+		}
+		else
+		{
+			return self::NORMAL_PRICE;
 		}
 	}
 }
