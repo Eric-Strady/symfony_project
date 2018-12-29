@@ -29,6 +29,10 @@ class BookingController extends Controller
                 $setPrice = $this->get('louvre_booking.calculate_price')->definePrice($booking, $currentDate);
             }
 
+            $bookingRepository = $this->getDoctrine()->getManager()->getRepository('LouvreBookingBundle:Booking');
+            $totalPrice = $bookingRepository->totalPrice();
+            $buyer->setTotalPrice($totalPrice);
+
 			$em->flush();
 
 			$request->getSession()->getFlashBag()->add('booked', 'Votre réservation a bien été prise en compte !');

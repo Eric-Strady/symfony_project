@@ -10,4 +10,15 @@ namespace Louvre\BookingBundle\Repository;
  */
 class BookingRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function totalPrice()
+	{
+		$qb = $this->createQueryBuilder('b')
+			->innerjoin('b.buyer', 'book')
+			->addselect('book')
+			->select('sum(b.price)')
+			->where('b.buyer = book.id')
+		;
+
+		return $qb->getQuery()->getSingleScalarResult();
+	}
 }
