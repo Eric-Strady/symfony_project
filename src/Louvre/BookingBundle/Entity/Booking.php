@@ -195,20 +195,6 @@ class Booking
     }
 
     /**
-     * Set buyer
-     *
-     * @param \Louvre\BookingBundle\Entity\Buyer $buyer
-     *
-     * @return Booking
-     */
-    public function setBuyer(\Louvre\BookingBundle\Entity\Buyer $buyer)
-    {
-        $this->buyer = $buyer;
-
-        return $this;
-    }
-
-    /**
      * Set reducedPrice
      *
      * @param boolean $reducedPrice
@@ -256,6 +242,19 @@ class Booking
         return $this->price;
     }
 
+    /**
+     * Set buyer
+     *
+     * @param \Louvre\BookingBundle\Entity\Buyer $buyer
+     *
+     * @return Booking
+     */
+    public function setBuyer(\Louvre\BookingBundle\Entity\Buyer $buyer)
+    {
+        $this->buyer = $buyer;
+
+        return $this;
+    }
 
     /**
      * Get buyer
