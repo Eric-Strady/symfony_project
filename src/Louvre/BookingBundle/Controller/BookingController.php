@@ -13,6 +13,7 @@ class BookingController extends Controller
 {
     public function indexAction(Request $request)
     {
+        $currentDate = new \DateTime();
     	$buyer = new Buyer();
 
     	$form = $this->createForm(BuyerType::class, $buyer);
@@ -25,7 +26,9 @@ class BookingController extends Controller
             {
                 $booking->setBuyer($buyer);
                 $em->persist($booking);
+                $setPrice = $this->get('louvre_booking.calculate_price')->definePrice($booking, $currentDate);
             }
+
 			$em->flush();
 
 			$request->getSession()->getFlashBag()->add('booked', 'Votre réservation a bien été prise en compte !');
