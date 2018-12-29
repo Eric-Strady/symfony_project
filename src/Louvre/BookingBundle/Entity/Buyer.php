@@ -70,9 +70,9 @@ class Buyer
      * @ORM\Column(name="total_price", type="integer")
      * @Assert\NotBlank(message="Le prix total ne doit pas être vide !")
      * @Assert\Type(type="integer", message="'{{ value }}' n'est pas un nombre.")
-     * @Assert\GreaterThan(value=0, message="'{{ value }}' doit obligatoirement être supérieur à {{ compared_value }} €.")
+     * @Assert\GreaterThan(value=-1, message="'{{ value }}' doit obligatoirement être supérieur à {{ compared_value }} €.")
      */
-    private $totalPrice;
+    private $totalPrice = 0;
 
     /**
      * @var string
