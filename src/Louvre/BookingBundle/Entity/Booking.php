@@ -61,6 +61,24 @@ class Booking
     private $birthdate;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="reducedPrice", type="boolean")
+     * @Assert\Type(type="bool", message="'{{ value }}' n'est pas un boolean.")
+     */
+    private $reducedPrice;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="price", type="integer")
+     * @Assert\NotBlank(message="Le prix du billet ne doit pas être vide !")
+     * @Assert\Type(type="integer", message="'{{ value }}' n'est pas un nombre.")
+     * @Assert\GreaterThan(value=0, message="'{{ value }}' doit obligatoirement être supérieur à {{ compared_value }} €.")
+     */
+    private $price;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Louvre\BookingBundle\Entity\Buyer", inversedBy="bookings")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank(message="{{ value }} ne doit pas être vide !")
@@ -189,6 +207,55 @@ class Booking
 
         return $this;
     }
+
+    /**
+     * Set reducedPrice
+     *
+     * @param boolean $reducedPrice
+     *
+     * @return Booking
+     */
+    public function setReducedPrice($reducedPrice)
+    {
+        $this->reducedPrice = $reducedPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get reducedPrice
+     *
+     * @return boolean
+     */
+    public function getReducedPrice()
+    {
+        return $this->reducedPrice;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     *
+     * @return Booking
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
 
     /**
      * Get buyer
