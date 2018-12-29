@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class BookingType extends AbstractType
 {
@@ -22,25 +22,26 @@ class BookingType extends AbstractType
                 'label' => 'Prénom',
                 'attr' => array(
                     'class' => 'form-control')))
+
             ->add('lastName', TextType::class, array(
                 'label' => 'Nom',
                 'attr' => array(
                     'class' => 'form-control')))
+
             ->add('country', CountryType::class, array(
                 'label' => 'Pays',
                 'attr' => array(
-                    'class' => 'form-control')))
+                    'class' => 'form-control'),
+                'preferred_choices' => array('FR')))
+
             ->add('birthdate', BirthdayType::class, array(
                 'label' => 'Date d\'anniversaire',
                 'format' => 'dd / MM / yyyy',
                 'data' => new \DateTime()))
-            ->add('reducedPrice', ChoiceType::class, array(
+            
+            ->add('reducedPrice', CheckboxType::class, array(
                 'label' => 'Tarif réduit',
-                'multiple' => true,
-                'expanded' => true,
-                'choices' => array(
-                    'Tarif réduit' => true),
-                'choice_label' => false))
+                'required' => false))
             ;
     }
 
