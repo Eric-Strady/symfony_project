@@ -3,7 +3,19 @@ $(function(){
 	$('#step5').hide();
 
     var daysOff = $('#daysOff').data('daysOff');
-    console.log(daysOff);
+    var fullDays = [];
+    for (var i = 0; i < daysOff.length; i++) {
+        fullDays.push(new Date(daysOff[i].date.date));
+    }
+
+    var disabledDays = ['5-1', '11-1', '12-25'];
+    for (var i = 0; i < fullDays.length; i++) {
+        var month = fullDays[i].getMonth() + 1;
+        var day = fullDays[i].getDate()
+        var dateString = month + '-' + day;
+        dateString.toString();
+        disabledDays.push(dateString);
+    }
 
     $.datepicker.regional['fr'] = {
         dayNames: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
@@ -24,17 +36,15 @@ $(function(){
         minDate: '-0d',
         maxDate: '+1y',
         beforeShowDay: function(d) {
-            var publicHoliday = ['05-01', '11-01', '12-25'];
-
             if (d.getDay() === 1 || d.getDay() === 6)
             {
                 return [false, ''];
             }
             else
             {
-                var date = $.datepicker.formatDate('mm-dd', d);
+                var date = $.datepicker.formatDate('m-d', d);
 
-                return [publicHoliday.indexOf(date) === -1]
+                return [disabledDays.indexOf(date) === -1]
             }
         }
     });
