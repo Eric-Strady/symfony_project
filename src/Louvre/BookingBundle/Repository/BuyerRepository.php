@@ -10,4 +10,14 @@ namespace Louvre\BookingBundle\Repository;
  */
 class BuyerRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function totalBooking()
+	{
+		$qb = $this->createQueryBuilder('b')
+			->select('b.date')
+			->groupBy('b.date')
+			->having('sum(b.quantity) >= 1000')
+		;
+
+		return $qb->getQuery()->getArrayResult();
+	}
 }
