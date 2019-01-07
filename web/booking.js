@@ -2,6 +2,9 @@ $(function(){
 	$('#step4').hide();
 	$('#step5').hide();
 
+    var daysOff = $('#daysOff').data('daysOff');
+    console.log(daysOff);
+
     $.datepicker.regional['fr'] = {
         dayNames: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
         dayNamesShort: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],

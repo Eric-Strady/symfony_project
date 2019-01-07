@@ -1,10 +1,4 @@
-<div id="daysOff">
-    <ul>
-        {% for day in daysOff %}
-            <li>{{ day.date.date }}</li>
-        {% endfor %}
-    </ul>
-</div>
+<div id="daysOff" data-days-off="{{ daysOff|json_encode() }}"></div>
 
 <div class="col-lg-12" id="steps">
     {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
