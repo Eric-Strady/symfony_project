@@ -15,12 +15,14 @@ class BookingController extends Controller
     {
         $currentDate = new \DateTime();
     	$buyer = new Buyer();
+    	$em = $this->getDoctrine()->getManager();
 
-    	$form = $this->createForm(BuyerType::class, $buyer);
+        $form = $this->createForm(BuyerType::class, $buyer);
+        $buyerRepository = $em->getRepository('LouvreBookingBundle:Buyer');
+        $daysOff = $buyerRepository->totalBooking();
 
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
     	{
-			$em = $this->getDoctrine()->getManager();
 			$em->persist($buyer);
             foreach ($buyer->getBookings() as $booking)
             {
@@ -29,7 +31,7 @@ class BookingController extends Controller
                 $setPrice = $this->get('louvre_booking.calculate_price')->definePrice($booking, $currentDate);
             }
 
-            $bookingRepository = $this->getDoctrine()->getManager()->getRepository('LouvreBookingBundle:Booking');
+            $bookingRepository = $em->getRepository('LouvreBookingBundle:Booking');
             $totalPrice = $bookingRepository->totalPrice();
             $buyer->setTotalPrice($totalPrice);
 
@@ -40,6 +42,6 @@ class BookingController extends Controller
 			return $this->redirectToRoute('louvre_booking_homepage');
     	}
 
-        return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView()));
+        return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView(), 'daysOff' => $daysOff));
     }
 }
