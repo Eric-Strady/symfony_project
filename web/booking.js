@@ -2,7 +2,6 @@ $(function(){
 	$('#step4').hide();
 	$('#step5').hide();
 
-    var daysOff = $('#daysOff').data('daysOff');
     var fullDays = [];
     for (var i = 0; i < daysOff.length; i++) {
         fullDays.push(new Date(daysOff[i].date.date));
