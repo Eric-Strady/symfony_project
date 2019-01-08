@@ -1,4 +1,6 @@
 services:
     louvre_booking.calculate_price:
         class: Louvre\BookingBundle\Services\CalculatePrice
+    louvre_booking.booking_number:
+        class: Louvre\BookingBundle\Services\BookingNumber
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
