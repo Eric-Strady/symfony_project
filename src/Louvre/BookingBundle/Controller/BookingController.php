@@ -23,18 +23,20 @@ class BookingController extends Controller
 
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
     	{
-			$em->persist($buyer);
+            $setBookingNumber = $this->get('louvre_booking.booking_number')->defineBookingNumber($buyer, $currentDate);
+
+            $totalPrice = 0;
             foreach ($buyer->getBookings() as $booking)
             {
                 $booking->setBuyer($buyer);
+                $setPricePerTicket = $this->get('louvre_booking.calculate_price')->definePrice($booking, $currentDate);
+                $totalPrice += $setPricePerTicket;
                 $em->persist($booking);
-                $setPrice = $this->get('louvre_booking.calculate_price')->definePrice($booking, $currentDate);
             }
 
-            $bookingRepository = $em->getRepository('LouvreBookingBundle:Booking');
-            $totalPrice = $bookingRepository->totalPrice();
             $buyer->setTotalPrice($totalPrice);
 
+            $em->persist($buyer);
 			$em->flush();
 
 			$request->getSession()->getFlashBag()->add('booked', 'Votre réservation a bien été prise en compte !');

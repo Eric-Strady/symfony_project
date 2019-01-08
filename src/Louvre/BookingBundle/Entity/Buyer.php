@@ -77,15 +77,15 @@ class Buyer
     /**
      * @var string
      *
-     * @ORM\Column(name="booking_number", type="string", length=255, unique=true)
+     * @ORM\Column(name="booking_number", type="string", length=255)
      * @Assert\NotBlank(message="Le numéro de réservation ne doit pas être vide !")
      * @Assert\Type(type="string", message="'{{ value }}' n'est pas une chaîne de caractères.")
      * @Assert\Length(max=255, maxMessage="Le numéro de réservation ne doit pas dépasser {{ limit }} caractères.")
      */
-    private $bookingNumber;
+    private $bookingNumber = 'default';
 
     /**
-     * @ORM\OneToMany(targetEntity="Louvre\BookingBundle\Entity\Booking", mappedBy="buyer", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Louvre\BookingBundle\Entity\Booking", mappedBy="buyer", cascade={"persist", "remove"})
      * @Assert\NotBlank(message="{{ value }} ne doit pas être vide !")
      * @Assert\Type(type="object", message="'{{ value }}' n'est pas objet.")
      */

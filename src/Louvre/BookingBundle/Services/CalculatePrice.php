@@ -16,17 +16,23 @@ class CalculatePrice
 	const CHILD_AGE = 12;
 	const SENIOR_AGE = 60;
 
+
 	public function definePrice(Booking $booking, \DateTime $currentDate)
 	{
+		$price = 0;
 		$diffYear = $currentDate->diff($booking->getBirthDate())->y;
 
 		if ($booking->getReducedPrice() && $diffYear > self::CHILD_AGE)
 		{
 			$booking->setPrice(self::REDUCED_PRICE);
+			$price = $booking->getPrice();
+			return $price;
 		}
 		else
 		{
 			$booking->setPrice($this->calculatePrice($diffYear));
+			$price = $booking->getPrice();
+			return $price;
 		}
 	}
 
