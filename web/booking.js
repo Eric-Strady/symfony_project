@@ -2,6 +2,8 @@ $(function(){
 	$('#step4').hide();
 	$('#step5').hide();
 
+    // DATEPICKER
+
     var fullDays = [];
     for (var i = 0; i < daysOff.length; i++) {
         fullDays.push(new Date(daysOff[i].date.date));
@@ -106,5 +108,4 @@ $(function(){
     {
         $('#step5').fadeIn('slow');      
     });
-
 });
