@@ -29,5 +29,13 @@
 			</div>
 			{{ include("@LouvreBooking/Booking/buyer_form.html.twig") }}
 		</div>
+	</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('booking.js') }}"></script>
 
 {% endblock %}
