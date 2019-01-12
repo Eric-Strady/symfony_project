@@ -1,0 +1,21 @@
+<?php
+
+namespace Louvre\BookingBundle\Services;
+
+class Stripe
+{
+
+	public function payment(Buyer $buyer)
+	{
+		\Stripe\Stripe::setApiKey("sk_test_U7Dow6nqjUiYNLUGdEwV8W0O");
+
+		$token = '?';
+
+		$charge = \Stripe\Charge::create([
+		    'amount' => $amount,
+		    'currency' => 'eur',
+		    'description' => 'Réservation pour ' . $quantity . ' personnes',
+		    'source' => $token,
+		]);
+	}
+}
