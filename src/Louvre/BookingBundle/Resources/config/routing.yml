@@ -1,3 +1,7 @@
 louvre_booking_homepage:
     path:    /
     defaults: { _controller: LouvreBookingBundle:Booking:index }
+
+louvre_booking_payment:
+    path:    /payment
+    defaults: { _controller: LouvreBookingBundle:Booking:payment }

@@ -35,14 +35,27 @@ class BookingController extends Controller
             }
 
             $buyer->setTotalPrice($totalPrice);
+            $request->getSession()->set('buyer', $buyer);
             $em->persist($buyer);
-            $em->flush();
-
-            $request->getSession()->getFlashBag()->add('booked', 'Votre réservation a bien été prise en compte !');
 
 			return $this->render('@LouvreBooking/checkout.html.twig', array('buyer' => $buyer));
     	}
 
         return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView(), 'daysOff' => $daysOff));
+    }
+
+    public function paymentAction(Request $request)
+    {
+        if ($request->isMethod('POST'))
+        {
+            $buyer = $request->getSession()->get('buyer');
+            $validPayment = $this->get('louvre_booking.stripe')->payment($buyer);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('booked', 'Votre réservation a bien été prise en compte !');
+            return $this->render('@LouvreBooking/checkout.html.twig');
+        }
     }
 }
