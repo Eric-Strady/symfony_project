@@ -15,7 +15,19 @@
 			        <div class="card-body">
 			            <p class="card-text">Montant total: {{ buyer.totalPrice }} €</p>
 			            <div class="card-footer">
-			                <button id="paymentButton">Payer</button>
+			                <form action="{{ path('louvre_booking_payment') }}" method="POST">
+								<script
+									src="https://checkout.stripe.com/checkout.js"
+									class="stripe-button"
+									data-key="pk_test_tDb6XO0ZNEPKErPi5Qrzwyhh"
+									data-image="{{ asset('images/logo.png') }}"
+									data-name="Musée du Louvre"
+									data-description="Réservation pour {{ buyer.quantity }} personne(s)"
+									data-zip-code="true"
+                    				data-currency="eur"
+									data-amount="{{ buyer.totalPrice * 100}}">
+								</script>
+							</form>
 			            </div>
 			        </div>
 			    </div>
@@ -23,13 +35,4 @@
 	    </div>
 	</div>
 
-{% endblock %}
-
-{% block scripts %}
-	{{ parent() }}
-	<script type="text/javascript" src="{{ asset('checkout.js') }}"></script>
-	<script type="text/javascript">
-		var amount = {{ buyer.totalPrice }};
-		var nbVisitor = {{ buyer.quantity }};
-	</script>
 {% endblock %}
