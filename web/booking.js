@@ -2,6 +2,13 @@ $(function(){
 	$('#step4').hide();
 	$('#step5').hide();
 
+    $('#emailForm').click(function()
+    {
+        $('#step5').fadeIn('slow');      
+    });
+
+    checkHour();
+
     // DATEPICKER
 
     var fullDays = [];
@@ -82,6 +89,21 @@ $(function(){
         }   	
     });
 
+    // HANDLE TYPE TICKET
+
+    $('form').submit(function(e)
+    {
+        var typeTicket = $('#louvre_bookingbundle_buyer_typeTicket option:selected').attr('value');
+        var wrongTypeTicket = checkHour();
+        if (typeTicket === 'BJ' && wrongTypeTicket == true)
+        {
+            $('#errors span').attr('class', 'alert alert-danger text-center').text('Vous passez commande après 14h00 ! Seul le billet demi-journée est valide.');
+            e.preventDefault();
+        }
+    });
+
+    // FUNCTIONS
+
     function addVisitorForm(nbVisitors, count, container)
     {
         for (count; count < nbVisitors; count++)
@@ -104,8 +126,16 @@ $(function(){
         }
     }
 
-    $('#emailForm').click(function()
+    function checkHour()
     {
-        $('#step5').fadeIn('slow');      
-    });
+        var hour = new Date().getHours();
+
+        if (hour >= 14)
+        {
+            $('#louvre_bookingbundle_buyer_typeTicket option:first').attr('disabled', 'disabled').css('background-color', '#babdc1');
+            $('#louvre_bookingbundle_buyer_typeTicket option:last').attr('selected', 'true');
+
+            return true;
+        }
+    }
 });
