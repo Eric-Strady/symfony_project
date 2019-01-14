@@ -25,6 +25,7 @@
 									data-description="Réservation pour {{ buyer.quantity }} personne(s)"
 									data-zip-code="true"
                     				data-currency="eur"
+                    				data-locale="auto"
 									data-amount="{{ buyer.totalPrice * 100}}">
 								</script>
 							</form>
@@ -34,5 +35,12 @@
 			</div>
 	    </div>
 	</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('checkout.js') }}"></script>
 
 {% endblock %}
