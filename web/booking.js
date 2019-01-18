@@ -7,8 +7,6 @@ $(function(){
         $('#step5').fadeIn('slow');      
     });
 
-    checkHour();
-
     // DATEPICKER
 
     var fullDays = [];
@@ -57,6 +55,28 @@ $(function(){
         }
     });
 
+    // HANDLE TYPE TICKET
+
+    $('#louvre_bookingbundle_buyer_typeTicket').focus(function()
+    {
+        var dateVisit = getDayPick();
+        checkTypeTicket(dateVisit);
+    });
+
+    $('form').submit(function(e)
+    {
+        var typeTicket = $('#louvre_bookingbundle_buyer_typeTicket option:selected').attr('value');
+        var dateVisit = getDayPick();
+        var wrongTypeTicket = checkTypeTicket(dateVisit);
+        if (typeTicket === 'BJ' && wrongTypeTicket == true)
+        {
+            $('#errors span').attr('class', 'alert alert-danger text-center').text('Vous passez commande après 14h00 ! Seul le billet demi-journée est valide.');
+            e.preventDefault();
+        }
+    });
+
+    // VISITORS FORM
+
     $('#visitorForm').click(function()
     {
         var container = $('div#louvre_bookingbundle_buyer_bookings');
@@ -86,20 +106,7 @@ $(function(){
             {
                 alert('Vous devez sasir un nombre de visiteurs entre 0 et 10 !');
             } 
-        }   	
-    });
-
-    // HANDLE TYPE TICKET
-
-    $('form').submit(function(e)
-    {
-        var typeTicket = $('#louvre_bookingbundle_buyer_typeTicket option:selected').attr('value');
-        var wrongTypeTicket = checkHour();
-        if (typeTicket === 'BJ' && wrongTypeTicket == true)
-        {
-            $('#errors span').attr('class', 'alert alert-danger text-center').text('Vous passez commande après 14h00 ! Seul le billet demi-journée est valide.');
-            e.preventDefault();
-        }
+        }       
     });
 
     // FUNCTIONS
@@ -126,16 +133,29 @@ $(function(){
         }
     }
 
-    function checkHour()
+    function getDayPick()
     {
-        var hour = new Date().getHours();
+        var datePick = $('#louvre_bookingbundle_buyer_date').datepicker('getDate');
+        var dateVisit = datePick.getDate();
+        return dateVisit;
+    }
 
-        if (hour >= 14)
+    function checkTypeTicket(dateVisit)
+    {
+        var date = new Date();
+        var day = date.getDate();
+        var hour = date.getHours();
+
+        if (dateVisit === day && hour >= 14)
         {
             $('#louvre_bookingbundle_buyer_typeTicket option:first').attr('disabled', 'disabled').css('background-color', '#babdc1');
             $('#louvre_bookingbundle_buyer_typeTicket option:last').attr('selected', 'true');
-
             return true;
+        }
+        else
+        {
+            $('#louvre_bookingbundle_buyer_typeTicket option:first').removeAttr('disabled').css('background-color', 'white');
+            return false;
         }
     }
 });
