@@ -20,7 +20,7 @@ class Mailer
 		$email = $buyer->getEmail();
 
 		$message = (new \Swift_Message('Récapitulatif commande'))
-	        ->setFrom('send@example.com')
+	        ->setFrom('order@louvre.com' => 'Louvre Paris')
 	        ->setTo($email)
 	        ->setBody(
 	            $this->twig->render('@LouvreBooking/orderSummary.html.twig', array('buyer' => $buyer)),
