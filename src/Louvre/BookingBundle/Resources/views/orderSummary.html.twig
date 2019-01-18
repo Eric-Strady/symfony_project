@@ -2,7 +2,7 @@
 	<img src="{{ absolute_url(asset('images/logo.png')) }}">
     <h3>Musée du Louvre - Confirmation de réservation:</h3>
     <p>Numéro de réservation: {{ buyer.bookingNumber }}<br/>
-    Date de la visite: {{ buyer.date }}
+    Date de la visite: {{ buyer.date|date("d/m/Y") }}
     Vous avez réservé {{ buyer.quantity }} billet(s) pour un montant de {{ buyer.totalPrice|number_format(2, ',', ' ') }} €</p>
 
     <h4>Récapitulatif de votre réservation:</h4>
@@ -10,9 +10,9 @@
     	{% for booking in buyer.bookings %}
     		<li>
     			{{ booking.firstName }} {{ booking.lastName }}: un 
-    			{% if booking.typeTicket === 'BJ' %} Billet Journée{% else %} Billet Demi-journée{% endif %} au tarif 
-    			{% if booking.price == 0 %} moins de 4 ans{% elseif booking.price == 8 %} enfant{% elseif booking.price == 10 %} réduit{% elseif booking.price == 12 %} normal{% else %} senior{% endif %} (soit 
-    			{% if booking.price == 0 %} 0{% elseif booking.price == 8 %} 8{% elseif booking.price == 10 %} 10{% elseif booking.price == 12 %} 12{% else %} 16{% endif %} €)
+    			{% if buyer.typeTicket is same as('BJ') %} Billet Journée{% else %} Billet Demi-journée{% endif %} au tarif 
+    			{% if booking.price is same as(0) %} moins de 4 ans{% elseif booking.price is same as(8) %} enfant{% elseif booking.price is same as(10) %} réduit{% elseif booking.price is same as(12) %} normal{% else %} senior{% endif %} (soit 
+    			{% if booking.price is same as(0) %} 0{% elseif booking.price is same as(8) %} 8{% elseif booking.price is same as(10) %} 10{% elseif booking.price is same as(12) %} 12{% else %} 16{% endif %} €)
     		</li>
     	{% endfor %}
     </ul>

@@ -49,6 +49,7 @@ class BookingController extends Controller
         {
             $buyer = $request->getSession()->get('buyer');
             $validPayment = $this->get('louvre_booking.stripe')->payment($buyer);
+            $sendEmail = $this->get('louvre_booking.mailer')->sendOrderSummary($buyer);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($buyer);

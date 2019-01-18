@@ -6,7 +6,16 @@ use Louvre\BookingBundle\Entity\Buyer;
 
 class Mailer
 {
-	public function sendOrderSummary(Buyer $buyer, \Swift_Mailer $mailer)
+	private $mailer;
+	private $twig;
+
+	public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig)
+	{
+		$this->mailer = $mailer;
+		$this->twig = $twig;
+	}
+
+	public function sendOrderSummary(Buyer $buyer)
 	{
 		$email = $buyer->getEmail();
 
@@ -14,10 +23,10 @@ class Mailer
 	        ->setFrom('send@example.com')
 	        ->setTo($email)
 	        ->setBody(
-	            $this->renderView('@LouvreBooking/orderSummary.html.twig', array('buyer' => $buyer)),
+	            $this->twig->render('@LouvreBooking/orderSummary.html.twig', array('buyer' => $buyer)),
 	            'text/html'
         	);
 
-	    $mailer->send($message);
+	    $this->mailer->send($message);
 	}
 }
