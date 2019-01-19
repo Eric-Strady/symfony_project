@@ -1,5 +1,5 @@
 $(function(){
-
+    
     $('.anchor').click(function(e) {
         if (this.hash !== "")
         {
@@ -14,8 +14,7 @@ $(function(){
 	$('#step4').hide();
 	$('#step5').hide();
 
-    $('#emailForm').click(function()
-    {
+    $('#emailForm').click(function() {
         $('#step5').fadeIn('slow');      
     });
 
@@ -69,14 +68,12 @@ $(function(){
 
     // HANDLE TYPE TICKET
 
-    $('#louvre_bookingbundle_buyer_typeTicket').focus(function()
-    {
+    $('#louvre_bookingbundle_buyer_typeTicket').focus(function() {
         var dateVisit = getDayPick();
         checkTypeTicket(dateVisit);
     });
 
-    $('form').submit(function(e)
-    {
+    $('form').submit(function(e) {
         var typeTicket = $('#louvre_bookingbundle_buyer_typeTicket option:selected').attr('value');
         var dateVisit = getDayPick();
         var wrongTypeTicket = checkTypeTicket(dateVisit);
@@ -89,8 +86,7 @@ $(function(){
 
     // VISITORS FORM
 
-    $('#visitorForm').click(function()
-    {
+    $('#visitorForm').click(function() {
         var container = $('div#louvre_bookingbundle_buyer_bookings');
         var count = container.children('div').length;
         var nbVisitors = $('#louvre_bookingbundle_buyer_quantity').val();
