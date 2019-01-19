@@ -18,7 +18,7 @@
 
             <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
                 <div class="container">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="{{ path('louvre_booking_homepage') }}">
                         <img src="{{ asset('images/logo.png') }}" title="Logo du musée du Louvre" id="logo">
                     </a>
                     <span class="navbar-text" id="slogan">
@@ -29,6 +29,9 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="anchor nav-link" href="{{ path('louvre_booking_homepage') }}">Accueil</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="anchor nav-link" href="#typeTicket">Billets</a>
                             </li>
