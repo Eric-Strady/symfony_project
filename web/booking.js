@@ -24,9 +24,9 @@ $(function(){
     }
 
     $.datepicker.regional['fr'] = {
-        dayNames: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
-        dayNamesShort: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
-        dayNamesMin: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
+        dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+        dayNamesShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+        dayNamesMin: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
         monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
         monthNamesShort: ['Jan', 'Févr', 'Mar', 'Avr', 'Mai', 'Jun', 'Jui', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'],
         dateFormat: 'dd/mm/yy'
@@ -38,11 +38,11 @@ $(function(){
         autosize: true,
         hideIfNoPrevNext: true,
         duration: 'slow',
-        firstDay: 0,
+        firstDay: 1,
         minDate: '-0d',
         maxDate: '+1y',
         beforeShowDay: function(d) {
-            if (d.getDay() === 1 || d.getDay() === 6)
+            if (d.getDay() === 0 || d.getDay() === 2)
             {
                 return [false, ''];
             }
