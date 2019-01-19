@@ -23,7 +23,9 @@
 									data-image="{{ asset('images/logo.png') }}"
 									data-name="Musée du Louvre"
 									data-description="Réservation pour {{ buyer.quantity }} personne(s)"
+									data-email="{{ buyer.email }}"
 									data-zip-code="true"
+									data-allow-remember-me="false"
                     				data-currency="eur"
                     				data-locale="auto"
 									data-amount="{{ buyer.totalPrice * 100}}">
