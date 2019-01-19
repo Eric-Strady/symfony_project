@@ -16,10 +16,20 @@
             
         <body>
 
-            <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+            <header class="masthead text-center">
+                <div class="masthead-content">
+                    <div class="container">
+                        <h1 class="masthead-heading mb-0">Le musée du Louvre</h1>
+                        <h2 class="masthead-subheading mb-0">Un lieu unique pour des oeuvres uniques</h2>
+                        <a href="#nav" class="anchor btn btn-light btn-xl rounded-pill mt-5">Accéder à la billeterie</a>
+                    </div>
+                </div>
+            </header>
+
+            <nav class="navbar navbar-expand-lg navbar-light navbar-custom" id="nav">
                 <div class="container">
-                    <a class="navbar-brand" href="#">
-                        <img src="{{ asset('images/logo.png') }}" title="Logo du musée du Louvre" id="logo"><br/>
+                    <a class="navbar-brand" href="#nav">
+                        <img src="{{ asset('images/logo.png') }}" title="Logo du musée du Louvre" id="logo">
                         <span id="slogan">Le musée du Louvre</span>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,31 +38,21 @@
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Accueil</a>
+                                <a class="anchor nav-link" href="#nav">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#typeTicket">Billets</a>
+                                <a class="anchor nav-link" href="#typeTicket">Billets</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#priceTicket">Tarifs</a>
+                                <a class="anchor nav-link" href="#priceTicket">Tarifs</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#booking">Réservation</a>
+                                <a class="anchor nav-link" href="#booking">Réservation</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-
-            <header class="masthead text-center">
-                <div class="masthead-content">
-                    <div class="container">
-                        <h1 class="masthead-heading mb-0">Le musée du Louvre</h1>
-                        <h2 class="masthead-subheading mb-0">Un lieu unique pour des oeuvres uniques</h2>
-                        <a href="#booking" class="btn btn-light btn-xl rounded-pill mt-5">Réservation</a>
-                    </div>
-                </div>
-            </header>
 
             {% block body %}
             {% endblock %}
