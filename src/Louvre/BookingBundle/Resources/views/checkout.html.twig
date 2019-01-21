@@ -1,48 +1,65 @@
 {% extends "layout.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('checkout.css') }}">
+{% endblock %}
+
+{% block nav %}
+	<nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ path('louvre_booking_homepage') }}">
+                <img src="{{ asset('images/logo.png') }}" title="Logo du musée du Louvre" id="logo">
+            </a>
+            <span class="navbar-text" id="slogan">
+                Le musée du Louvre - Réservation
+            </span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="anchor nav-link" href="{{ path('louvre_booking_homepage') }}">Accueil</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
 {% block body %}
-
-	{% for message in app.session.flashbag.get('booked') %}
-	    <div class="alert alert-info">{{ message }}</div>
-	{% endfor %}
-
-	<div class="container-fluid">
-		<div class="row justify-content-md-center" id="paymentField">
-			<div class="col-lg-12 mb-4">
-				<h2>Paiement</h2>
-				<div class="card mb-4 text-center">
-			        <h3 class="card-title">Votre réservation</h3>
-			        <div class="card-body">
-			            <p class="card-text">Montant total: {{ buyer.totalPrice }} €</p>
-			            <div class="card-footer">
-			                <form action="{{ path('louvre_booking_payment') }}" method="POST">
-								<script
-									src="https://checkout.stripe.com/checkout.js"
-									class="stripe-button"
-									data-key="pk_test_tDb6XO0ZNEPKErPi5Qrzwyhh"
-									data-image="{{ asset('images/logo.png') }}"
-									data-name="Musée du Louvre"
-									data-description="Réservation pour {{ buyer.quantity }} personne(s)"
-									data-email="{{ buyer.email }}"
-									data-zip-code="true"
-									data-allow-remember-me="false"
-                    				data-currency="eur"
-                    				data-locale="auto"
-									data-amount="{{ buyer.totalPrice * 100}}">
-								</script>
-							</form>
-			            </div>
-			        </div>
-			    </div>
-			</div>
-	    </div>
-	</div>
-
+	<section class="container" id="checkout">
+        <div id="transparency">
+        	<div id="orderSummary">
+        		<h3 class="text-center">Votre réservation:</h3>
+        		<p>Montant total: {{ buyer.totalPrice }} €</p>
+        		<a href="{{ path('louvre_booking_homepage') }}" class="btn btn-light rounded-pill">Annuler</a>
+        		<a href="#payment" class="btn btn-light rounded-pill">Confirmer</a>
+        	</div>
+            <div class="text-center" id="payment">
+				<form action="{{ path('louvre_booking_payment') }}" method="POST">
+					<script
+						src="https://checkout.stripe.com/checkout.js"
+						class="stripe-button"
+						data-key="pk_test_tDb6XO0ZNEPKErPi5Qrzwyhh"
+						data-image="{{ asset('images/logo.png') }}"
+						data-name="Musée du Louvre"
+						data-description="Réservation pour {{ buyer.quantity }} personne(s)"
+						data-email="{{ buyer.email }}"
+						data-zip-code="true"
+						data-allow-remember-me="false"
+						data-currency="eur"
+						data-locale="auto"
+						data-amount="{{ buyer.totalPrice * 100}}">
+					</script>
+				</form>
+            </div>
+        </div>
+    </section>
 {% endblock %}
 
 {% block scripts %}
-
 	{{ parent() }}
 	<script type="text/javascript" src="{{ asset('checkout.js') }}"></script>
-
 {% endblock %}
