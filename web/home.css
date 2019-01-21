@@ -1,0 +1,50 @@
+/* GENERAL */
+
+.btn-xl {text-transform:uppercase;padding:1.5rem 3rem;font-size:.9rem;font-weight:700;letter-spacing:.1rem}
+
+.rounded-pill {border-radius:5rem}
+
+header.masthead {position:relative;overflow:hidden;min-height: 100vh;padding-top:25vh;padding-bottom:25vh;background:url('images/louvre.jpg');background-repeat:no-repeat;background-position:center center;background-attachment:scroll;background-size:cover}
+
+header.masthead .masthead-content {z-index:1;position:relative}
+
+header.masthead .masthead-content .masthead-heading{font-size:6rem}
+
+header.masthead .masthead-content .masthead-subheading{font-size:4rem}
+
+header.masthead .masthead-content a{color:white;background-color: #b76e0e;border: 5px double #844f09;}
+
+header.masthead .masthead-content a:hover{color: white;background-color: #844f09;border: 5px double #844f09;box-shadow: none;}
+
+#typeTicket, #priceTicket {
+  box-shadow: 0px 3px 5px black;
+  padding-top: 65px;
+  padding-bottom: 30px;
+}
+
+#booking {
+  padding-top: 65px;
+  padding-bottom: 30px;
+}
+
+h2 {
+  text-align: center;
+}
+
+/* FORM */
+
+.validate_step {
+  justify-content: center;
+}
+
+#louvre_bookingbundle_buyer_date {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+/* ERROR */
+
+#error {
+  text-align: center;
+}
