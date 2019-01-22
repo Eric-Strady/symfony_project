@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="{{ asset('error.css') }}">
+
+        <title>Le musée du Louvre - Erreur {{ status_code }}</title>
+    </head>
+
+    <body>
+        <section class="container" id="error">
+            <div id="transparency">
+                <div class="text-center" id="errorExplained">
+                    <h3>Erreur {{ status_code }} !</h3>
+                    <p>Nous sommes désolé mais cette action n'est pas possible.<br/>
+                        Voici la réponse de notre serveur: <q>{{ status_text }}</q>
+                    </p>
+                    <a href="{{ path('louvre_booking_homepage') }}" class="btn btn-light btn-lg rounded-pill">Revenir à la page d'accueil</a>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
