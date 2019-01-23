@@ -43,7 +43,11 @@ h2 {
   border-radius: 0.25rem;
 }
 
-/* FLASH MESSAGE */
+/* ERRORS */
+
+.error span{
+  min-width: 100%;
+}
 
 .flashMessage {
   justify-content: center;

@@ -30,10 +30,12 @@
                 {{ form_widget(form.quantity, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
-        <div class="row mb-4" id="stepError">
-            <span></span>
+
+        <div class="row error" id="stepError1">
+            <span class="alert alert-danger text-center">Vous devez sasir un nombre de visiteurs entre 0 et 10 !</span>
         </div>
-        <div class="row validate_step">
+
+        <div class="row mb-4 validate_step">
             <a href="#step3" id="visitorForm"><span class="far fa-arrow-alt-circle-down fa-5x"></span></a>
         </div>
 	</div>
@@ -46,7 +48,12 @@
                 {{ form_widget(form.bookings) }}
             </div>
         </div>
-        <div class="row validate_step">
+
+        <div class="row error" id="stepError2">
+            <span class="alert alert-danger text-center">Le nombre de visiteurs indiqué ne correspond pas au nombre de formulaire par visiteur.</span>
+        </div>
+
+        <div class="row mb-4 validate_step">
             <a href="#step5" id="emailForm"><span class="far fa-check-circle fa-5x"></span></a>
         </div>
 	</div>
@@ -59,17 +66,18 @@
                 {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
+
+        <div class="row error" id="formError">
+            <span class="alert alert-danger text-center">Vous passez commande après 14h00 ! Seul le billet demi-journée est valide.</span>
+        </div>
+
         <div class="row validate_step">
-            {{ form_widget(form.paid, { 'label': 'Réserver' }) }}            
+            {{ form_widget(form.paid, { 'label': 'Réserver' }) }}
         </div>
 	</div>
 
     {{ form_rest(form) }}
     {{ form_end(form) }}
-</div>
-
-<div class="col-lg-12 mb-4" id="errors">
-    <span></span>
 </div>
 
 <script type="text/javascript">

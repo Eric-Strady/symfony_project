@@ -11,12 +11,9 @@ $(function(){
         }
     });
 
-	$('#step4').hide();
-	$('#step5').hide();
+	$('#step4, #step5, #stepError1, #stepError2, #formError').hide();
 
-    $('#emailForm').click(function() {
-        $('#step5').fadeIn('slow');      
-    });
+    var container = $('div#louvre_bookingbundle_buyer_bookings');
 
     // DATEPICKER
 
@@ -79,15 +76,14 @@ $(function(){
         var wrongTypeTicket = checkTypeTicket(dateVisit);
         if (typeTicket === 'BJ' && wrongTypeTicket == true)
         {
-            $('#errors span').attr('class', 'alert alert-danger text-center').text('Vous passez commande après 14h00 ! Seul le billet demi-journée est valide.');
+            $('#formError').fadeIn('fast').delay(5000).hide('slow');
             e.preventDefault();
         }
     });
 
-    // VISITORS FORM
+    // VALIDATED STEPS BUTTON
 
     $('#visitorForm').click(function() {
-        var container = $('div#louvre_bookingbundle_buyer_bookings');
         var count = container.children('div').length;
         var nbVisitors = $('#louvre_bookingbundle_buyer_quantity').val();
 
@@ -113,9 +109,22 @@ $(function(){
             }
             else
             {
-                $('#errors span').attr('class', 'alert alert-danger text-center').text('Vous devez sasir un nombre de visiteurs entre 0 et 10 !');
-            } 
-        }       
+                $('#stepError1').fadeIn('fast').delay(5000).hide('slow');
+            }
+        }
+    });
+
+    $('#emailForm').click(function() {
+        var count = container.children('div').length;
+        var nbVisitors = $('#louvre_bookingbundle_buyer_quantity').val();
+        if (nbVisitors == count)
+        {
+            $('#step5').fadeIn('slow');
+        }    
+        else
+        {
+            $('#stepError2').fadeIn('fast').delay(5000).hide('slow');
+        }   
     });
 
     // FUNCTIONS
