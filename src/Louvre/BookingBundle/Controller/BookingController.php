@@ -23,22 +23,41 @@ class BookingController extends Controller
 
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
     	{
-            $isBookingNumberExist = true;
-            $setBookingNumber = '';
-
-            while ($isBookingNumberExist !== null) {
-                $setBookingNumber = $this->get('louvre_booking.booking_number')->defineBookingNumber($buyer, $currentDate);
-                $isBookingNumberExist = $buyerRepository->findOneByBookingNumber($setBookingNumber);
-            }
-
             $totalPrice = 0;
+            $count = 0;
             foreach ($buyer->getBookings() as $booking)
             {
                 $booking->setBuyer($buyer);
                 $setPricePerTicket = $this->get('louvre_booking.calculate_price')->definePrice($booking, $currentDate);
                 $totalPrice += $setPricePerTicket;
                 $em->persist($booking);
+                $count++;
             }
+
+            if ($buyer->getQuantity() !== $count)
+            {
+                $request->getSession()->getFlashBag()->add('wrongData', 'Vous devez remplir autant de formulaires individuels que de nombre de visiteurs renseigné !');
+                return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView(), 'daysOff' => $daysOff));
+            }
+
+            $dateVisit = $buyer->getDate()->format('d/m');
+            $today = $currentDate->format('d/m');
+
+            if ($dateVisit == $today && $buyer->getTypeTicket() === 'BJ')
+            {
+                $request->getSession()->getFlashBag()->add('wrongData', 'Vous passez commande après 14h00 ! Seul le billet demi-journée est valide.');
+                return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView(), 'daysOff' => $daysOff));
+            }
+            
+
+            $isBookingNumberExist = true;
+            $setBookingNumber = '';
+            while ($isBookingNumberExist !== null) {
+                $setBookingNumber = $this->get('louvre_booking.booking_number')->defineBookingNumber($buyer, $currentDate);
+                $isBookingNumberExist = $buyerRepository->findOneByBookingNumber($setBookingNumber);
+            }
+
+
 
             $buyer->setTotalPrice($totalPrice);
             $request->getSession()->set('buyer', $buyer);

@@ -95,10 +95,12 @@ $(function(){
         {
             if (nbVisitors > count)
             {
+                $('#step4').fadeIn('slow');
                 addVisitorForm(nbVisitors, count, container);
             }
             else
             {
+                $('#step4').fadeIn('slow');
                 deleteVisitorForm(nbVisitors, count, container);
             }
         }
@@ -107,12 +109,11 @@ $(function(){
             if (nbVisitors > 0 && nbVisitors < 10)
             {
                 $('#step4').fadeIn('slow');
-                
                 addVisitorForm(nbVisitors, count, container);
             }
             else
             {
-                alert('Vous devez sasir un nombre de visiteurs entre 0 et 10 !');
+                $('#errors span').attr('class', 'alert alert-danger text-center').text('Vous devez sasir un nombre de visiteurs entre 0 et 10 !');
             } 
         }       
     });
@@ -144,17 +145,21 @@ $(function(){
     function getDayPick()
     {
         var datePick = $('#louvre_bookingbundle_buyer_date').datepicker('getDate');
-        var dateVisit = datePick.getDate();
+        var day = datePick.getDate();
+        var month = datePick.getMonth();
+        var dateVisit = day + '/' + month;
         return dateVisit;
     }
 
     function checkTypeTicket(dateVisit)
     {
         var date = new Date();
-        var day = date.getDate();
         var hour = date.getHours();
+        var day = date.getDate();
+        var month = date.getMonth();
+        var today = day + '/' + month;
 
-        if (dateVisit === day && hour >= 14)
+        if (dateVisit === today && hour >= 14)
         {
             $('#louvre_bookingbundle_buyer_typeTicket option:first').attr('disabled', 'disabled').css('background-color', '#babdc1');
             $('#louvre_bookingbundle_buyer_typeTicket option:last').attr('selected', 'true');

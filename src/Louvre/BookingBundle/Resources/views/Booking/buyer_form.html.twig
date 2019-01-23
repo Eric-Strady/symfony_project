@@ -30,6 +30,9 @@
                 {{ form_widget(form.quantity, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
+        <div class="row mb-4" id="stepError">
+            <span></span>
+        </div>
         <div class="row validate_step">
             <a href="#step3" id="visitorForm"><span class="far fa-arrow-alt-circle-down fa-5x"></span></a>
         </div>
@@ -65,7 +68,7 @@
     {{ form_end(form) }}
 </div>
 
-<div class="col-lg-12" id="errors">
+<div class="col-lg-12 mb-4" id="errors">
     <span></span>
 </div>
 
