@@ -23,7 +23,13 @@ class BookingController extends Controller
 
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
     	{
-            $setBookingNumber = $this->get('louvre_booking.booking_number')->defineBookingNumber($buyer, $currentDate);
+            $isBookingNumberExist = true;
+            $setBookingNumber = '';
+
+            while ($isBookingNumberExist !== null) {
+                $setBookingNumber = $this->get('louvre_booking.booking_number')->defineBookingNumber($buyer, $currentDate);
+                $isBookingNumberExist = $buyerRepository->findOneByBookingNumber($setBookingNumber);
+            }
 
             $totalPrice = 0;
             foreach ($buyer->getBookings() as $booking)

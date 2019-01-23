@@ -18,6 +18,8 @@ class BookingNumber
         $bookingNumber = $datePurchase. '_' .$firstRandomChars. '*' .$typeTicket. '*' .$secondRandomChars. '_' .$dateVisit;
 
         $buyer->setBookingNumber($bookingNumber);
+
+        return $bookingNumber;
     }
 
     private function defineRandomChars()
