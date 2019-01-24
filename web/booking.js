@@ -81,7 +81,7 @@ $(function(){
         }
     });
 
-    // VALIDATED STEPS BUTTON
+    // HANDLE VISITORS FORM
 
     $('#visitorForm').click(function() {
         var count = container.children('div').length;

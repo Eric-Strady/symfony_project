@@ -7,7 +7,7 @@
             {{ form_label(form.date, "Date de la visite", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
             {{ form_errors(form.date) }}
             <div class="col-sm-10">
-                {{ form_widget(form.date) }}
+                {{ form_widget(form.date, {'attr': {'placeholder': 'JJ/MM/AAAA'}}) }}
             </div>
         </div>
 	</div>
@@ -63,7 +63,7 @@
             {{ form_label(form.email, "Adresse e-mail", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
             {{ form_errors(form.email) }}
             <div class="col-sm-10">
-                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'exemple@mail.com'}}) }}
             </div>
         </div>
 
