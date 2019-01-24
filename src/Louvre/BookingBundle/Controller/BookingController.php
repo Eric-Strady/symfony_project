@@ -74,16 +74,25 @@ class BookingController extends Controller
         {
             $buyer = $request->getSession()->get('buyer');
             $validPayment = $this->get('louvre_booking.stripe')->payment($buyer);
-            $sendEmail = $this->get('louvre_booking.mailer')->sendOrderSummary($buyer);
+            if ($validPayment === true)
+            {
+                $sendEmail = $this->get('louvre_booking.mailer')->sendOrderSummary($buyer);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($buyer);
-            $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($buyer);
+                $em->flush();
 
-            $request->getSession()->getFlashBag()->add('booked', 'Votre réservation a bien été prise en compte !');
-            return $this->redirectToRoute('louvre_booking_homepage');
+                $request->getSession()->getFlashBag()->add('booked', 'Votre réservation a bien été prise en compte !');
+                return $this->redirectToRoute('louvre_booking_homepage');
+            }
+            else
+            {
+                $message = $validPayment;
+                $request->getSession()->getFlashBag()->add('stripeError', $message);
+                return $this->render('@LouvreBooking/checkout.html.twig', array('buyer' => $buyer));
+            }
         }
-        
+
         return $this->redirectToRoute('louvre_booking_homepage');
     }
 }
