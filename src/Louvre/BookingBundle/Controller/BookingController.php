@@ -83,5 +83,7 @@ class BookingController extends Controller
             $request->getSession()->getFlashBag()->add('booked', 'Votre réservation a bien été prise en compte !');
             return $this->redirectToRoute('louvre_booking_homepage');
         }
+        
+        return $this->redirectToRoute('louvre_booking_homepage');
     }
 }
