@@ -4,6 +4,10 @@
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+#slogan {
+  font-weight: bold;
+}
+
 #logo {
   width: 100px;
   height: 40px;
@@ -22,22 +26,5 @@
 }
 
 .nav-item:hover {
-  color: #BF0300;
-  border: 2px solid #BF0300;
-}
-
-.dropdown-item:hover {
-  color: #BF0300;
-}
-
-.dropdown-item:focus {
-  background-color: white;
-}
-
-.navbar-dark .navbar-nav .nav-link {
-  color: white;
-}
-
-.navbar-dark .navbar-nav .nav-link:hover {
-  color: #BF0300;
+  border: 2px solid #b76e0e;
 }

@@ -2,19 +2,11 @@
 
 @media all and (max-width : 992px) {
   .nav-item {
-    border: none;
+    border: none!important;
   }
 
   .nav-item:hover {
-    border: none;
-  }
-
-  .dropdown-item:hover {
-    color: initial;
-  }
-
-  .navbar-dark .navbar-nav .nav-link:hover {
-  color: white;
+    border: none!important;
   }
 }
 
@@ -28,28 +20,8 @@
     flex-direction: column;
   }
 
-  .navbar-brand {
-    white-space: normal;
-    text-align: center;
-  }
-
   #navbarResponsive {
     width: 100%;
-  }
-
-  .card-body {
-    text-align: center;
-  }
-
-  .account .col-lg-2 input {
-  text-align: center;
-  max-width: 250px;
-  }
-
-  #transparency {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: rgba(50, 50, 50, 0.3);
   }
 }
 

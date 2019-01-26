@@ -10,8 +10,6 @@ header.masthead .masthead-content {z-index:1;position:relative}
 
 header.masthead .masthead-content .masthead-heading{font-size:6rem}
 
-header.masthead .masthead-content .masthead-subheading{font-size:4rem}
-
 header.masthead .masthead-content a{color:white;background-color: #b76e0e;border: 5px double #844f09;}
 
 header.masthead .masthead-content a:hover{color: white;background-color: #844f09;border: 5px double #844f09;box-shadow: none;}
@@ -24,8 +22,18 @@ header.masthead .masthead-content a:hover{color: white;background-color: #844f09
 
 }
 
+h2 {
+  text-align: center;
+}
+
+/* SECTIONS */
+
+.sectionTitle {
+  padding-bottom: 30px;
+}
+
 #usefulInformations, #typeTicket, #priceTicket {
-  box-shadow: 0px 5px 7px #845602;
+  box-shadow: 0px 7px 9px #845602;
   padding-top: 65px;
   padding-bottom: 30px;
 }
@@ -35,8 +43,15 @@ header.masthead .masthead-content a:hover{color: white;background-color: #844f09
   padding-bottom: 30px;
 }
 
-h2 {
-  text-align: center;
+/* CARDS */
+
+.card {
+  border: none;
+  background-color: unset;
+}
+
+.card-footer {
+  background-color: unset;
 }
 
 /* FORM */
