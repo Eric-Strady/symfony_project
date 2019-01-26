@@ -22,11 +22,14 @@
   }
 
   .box {
-    min-width: 100%;
+    min-width: 80%;
   }
 }
 
 @media all and (max-width : 600px) {
+  .sectionTitle {
+    font-size: 2rem!important;
+  }
 
   #logo {
     display: none;

@@ -38,12 +38,25 @@
 
 .sectionTitle {
 	font-family: roman_sdregular, "Times New Roman", Arial, sans-serif;
+    font-size: 3rem;
 }
 
 #slogan, h1, .box-title {
 	font-family: chantelli_antiquaregular, "Times New Roman", Arial, sans-serif;
 }
 
-p, a, span {
+p, a, span, label, input, select {
 	font-family: philosopherregular, "Times New Roman", Arial, sans-serif;
+}
+
+.box-title, #priceTicket, span {
+    font-weight: bold;
+}
+
+.box-price {
+    font-size: 3rem;
+}
+
+p, label {
+    font-size: 1.1rem;
 }

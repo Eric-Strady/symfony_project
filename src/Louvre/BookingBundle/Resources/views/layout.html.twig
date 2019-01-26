@@ -68,14 +68,14 @@
 
 		<section id="typeTicket">
 			<div class="container-fluid">
-				<h2 class="sectionTitle">Types de billets</h2>
+				<h2 class="sectionTitle text-center">Types de billets</h2>
 				{{ include("@LouvreBooking/Booking/booking_tickets.html.twig") }}
 			</div>
 		</section>
 		
 		<section id="priceTicket">
 			<div class="container-fluid">
-				<h2 class="sectionTitle">Tarifs</h2>
+				<h2 class="sectionTitle text-center">Tarifs</h2>
 				{{ include("@LouvreBooking/Booking/booking_prices.html.twig") }}
 			</div>
 		</section>
@@ -84,7 +84,7 @@
 			<div class="container">
 				<div class="row" >
 					<div class="col-lg-12 mb-4">
-						<h2 class="sectionTitle">Réservation</h2>
+						<h2 class="sectionTitle text-center">Réservation</h2>
 					</div>
 					{% for message in app.session.flashbag.get('wrongData') %}
 						<div class="col-lg-12 mb-4">
