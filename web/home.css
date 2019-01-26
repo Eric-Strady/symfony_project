@@ -17,12 +17,14 @@ header.masthead .masthead-content a{color:white;background-color: #b76e0e;border
 header.masthead .masthead-content a:hover{color: white;background-color: #844f09;border: 5px double #844f09;box-shadow: none;}
 
 #main {
-    background-image: url('images/encre.png'), url('images/parchemin.jpg');
-    background-repeat: no-repeat, repeat;
-    background-attachment: scroll;
+  background-image: url('images/encre.png'), url('images/parchemin.jpg');
+  background-repeat: no-repeat, repeat;
+  background-attachment: scroll;
+  border-radius: 1rem;
+
 }
 
-#typeTicket, #priceTicket {
+#usefulInformations, #typeTicket, #priceTicket {
   box-shadow: 0px 5px 7px #845602;
   padding-top: 65px;
   padding-bottom: 30px;
