@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('checkout.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
 {% endblock %}
 
 {% block nav %}
@@ -42,7 +42,7 @@
         	</div>
             {% for message in app.session.flashbag.get('stripeError') %}
                 <div class="col-lg-12 mb-4">
-                    <span class="row alert alert-danger text-center flashMessage">{{ message }}</span>
+                    <span class="row justify-content-md-center alert alert-danger text-center flashMessage">{{ message }}</span>
                 </div>
             {% endfor %}
             <div class="col-lg-12 text-center" id="payment">
@@ -69,5 +69,5 @@
 
 {% block scripts %}
 	{{ parent() }}
-	<script type="text/javascript" src="{{ asset('checkout.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/checkout.js') }}"></script>
 {% endblock %}
