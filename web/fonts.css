@@ -45,11 +45,11 @@
 	font-family: chantelli_antiquaregular, "Times New Roman", Arial, sans-serif;
 }
 
-p, a, span, label, input, select {
+p, a, span, label, input, select, .btn-primary{
 	font-family: philosopherregular, "Times New Roman", Arial, sans-serif;
 }
 
-.box-title, #priceTicket, span {
+.box-title, #priceTicket, span, .btn-primary {
     font-weight: bold;
 }
 
