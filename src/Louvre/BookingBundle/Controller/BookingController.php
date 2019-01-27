@@ -30,6 +30,14 @@ class BookingController extends Controller
                 return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView(), 'daysOff' => $daysOff));
             }
 
+            if ($buyer->getTypeTicket() !== 'BJ')
+            {
+                if ($buyer->getTypeTicket() !== 'BDJ') {
+                    $request->getSession()->getFlashBag()->add('wrongData', 'Ce type de billet n\'existe pas.');
+                    return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView(), 'daysOff' => $daysOff));
+                }
+            }
+
             $totalPrice = 0;
             $count = 0;
             foreach ($buyer->getBookings() as $booking)
