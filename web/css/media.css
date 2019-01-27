@@ -27,7 +27,7 @@
 }
 
 @media all and (max-width : 600px) {
-  .sectionTitle {
+  .sectionTitle, h2 {
     font-size: 2rem!important;
   }
 

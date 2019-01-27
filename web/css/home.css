@@ -113,12 +113,12 @@ input[type="checkbox"] {
 
 .btn-primary {
   margin-top: 1rem;
-  background-color: #0064FF;
-  border-color: #0064FF;
+  background-color: #0046B2;
+  border-color: #0046B2;
 }
 
 .btn-primary:hover {
-  background-color: #0046B2;
+  background-color: #0064FF;
 }
 
 /* ERRORS */

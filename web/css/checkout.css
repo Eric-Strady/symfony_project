@@ -21,7 +21,30 @@ body {
 
 #transparency {
 	padding: 40px;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+.icons {
+	margin-right: 20px;
+	color: #d1961f;
 }
 
 .rounded-pill {border-radius:5rem}
+
+.btn-light {
+	border: 3px solid #0046B2;
+}
+
+.btn-light:hover {
+	border: 3px solid #0064FF;
+}
+
+.btn-primary {
+  margin-top: 1rem;
+  background-color: #0046B2;
+  border-color: #0046B2;
+}
+
+.btn-primary:hover {
+  background-color: #0064FF;
+}
