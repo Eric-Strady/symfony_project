@@ -23,6 +23,13 @@ class BookingController extends Controller
 
     	if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
     	{
+            $dateValid = $this->get('louvre_booking.check_date')->isDateValid($buyer, $daysOff, $currentDate);
+            if ($dateValid === false)
+            {
+                $request->getSession()->getFlashBag()->add('wrongData', 'Il est impossible de réserver à la date que vous avez choisie.');
+                return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView(), 'daysOff' => $daysOff));
+            }
+
             $totalPrice = 0;
             $count = 0;
             foreach ($buyer->getBookings() as $booking)
@@ -48,7 +55,6 @@ class BookingController extends Controller
                 $request->getSession()->getFlashBag()->add('wrongData', 'Vous passez commande après 14h00 ! Seul le billet demi-journée est valide.');
                 return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView(), 'daysOff' => $daysOff));
             }
-            
 
             $isBookingNumberExist = true;
             $setBookingNumber = '';
@@ -56,8 +62,6 @@ class BookingController extends Controller
                 $setBookingNumber = $this->get('louvre_booking.booking_number')->defineBookingNumber($buyer, $currentDate);
                 $isBookingNumberExist = $buyerRepository->findOneByBookingNumber($setBookingNumber);
             }
-
-
 
             $buyer->setTotalPrice($totalPrice);
             $request->getSession()->set('buyer', $buyer);

@@ -1,4 +1,6 @@
 services:
+    louvre_booking.check_date:
+        class: Louvre\BookingBundle\Services\CheckDate
     louvre_booking.calculate_price:
         class: Louvre\BookingBundle\Services\CalculatePrice
     louvre_booking.booking_number:
