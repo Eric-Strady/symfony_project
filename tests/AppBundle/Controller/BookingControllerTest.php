@@ -9,7 +9,7 @@ class BookingControllerTest extends WebTestCase
     /**
      * @dataProvider urlProvider
      */
-    public function testPageIsSuccessful($url)
+    public function testHomePageIsSuccessful($url)
     {
         $client = self::createClient();
         $client->request('GET', $url);
@@ -21,5 +21,12 @@ class BookingControllerTest extends WebTestCase
         return [
 	        ['/']
     	];
+    }
+
+    public function testCheckoutPageIsNotRenderWithoutPostMethod()
+    {
+        $client = self::createClient();
+        $client->request('GET', '/payment');
+        $this->assertFalse($client->getResponse()->isSuccessful());
     }
 }
