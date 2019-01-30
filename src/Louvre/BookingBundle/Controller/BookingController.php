@@ -51,7 +51,7 @@ class BookingController extends Controller
 
             if ($buyer->getQuantity() !== $count)
             {
-                $request->getSession()->getFlashBag()->add('wrongData', 'Vous devez remplir autant de formulaires individuels que de nombre de visiteurs renseigné !');
+                $request->getSession()->getFlashBag()->add('wrongData', 'Vous devez remplir autant de formulaires individuels que de nombre de visiteurs renseignés !');
                 return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView(), 'daysOff' => $daysOff));
             }
 
@@ -94,7 +94,7 @@ class BookingController extends Controller
                 $em->persist($buyer);
                 $em->flush();
 
-                $request->getSession()->getFlashBag()->add('booked', 'Votre réservation a bien été prise en compte !');
+                $request->getSession()->getFlashBag()->add('booked', 'Votre réservation a bien été prise en compte ! Un e-mail de confirmation vient de vous être envoyé.');
                 return $this->redirectToRoute('louvre_booking_homepage');
             }
             else
