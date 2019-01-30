@@ -19,7 +19,7 @@ class CalculatePriceTest extends KernelTestCase
     public function testPriceIsCorrect($birthdate, $reducedPrice, $testPrice)
     {
     	$booking = new Booking();
-    	$date = new \DateTime('01/01/2019');
+    	$date = new \DateTime('01-01-2019');
 
     	$booking->setBirthdate($birthdate);
     	$booking->setReducedPrice($reducedPrice);
@@ -31,11 +31,11 @@ class CalculatePriceTest extends KernelTestCase
     public function PriceBookingProvider()
     {
         return [
-	        [new \DateTime('01/01/2016'), false, 0],
-	        [new \DateTime('01/01/2014'), false, 8],
-	        [new \DateTime('01/01/1995'), true, 10],
-	        [new \DateTime('01/01/1940'), false, 12],
-	        [new \DateTime('01/01/1995'), false, 16]
+	        [new \DateTime('01-01-2016'), false, 0],
+	        [new \DateTime('01-01-2014'), false, 8],
+	        [new \DateTime('01-01-1995'), true, 10],
+	        [new \DateTime('01-01-1940'), false, 12],
+	        [new \DateTime('01-01-1995'), false, 16]
     	];
     }
 }
