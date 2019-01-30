@@ -100,7 +100,7 @@ class BookingController extends Controller
             else
             {
                 $message = $validPayment;
-                $request->getSession()->getFlashBag()->add('stripeError', 'L\'erreur suivante est survenue lors du paiement: "' . $message . '" . Merci de réessayer de nouveau.');
+                $request->getSession()->getFlashBag()->add('stripeError', $message . ' Merci de réessayer de nouveau.');
                 return $this->render('@LouvreBooking/checkout.html.twig', array('buyer' => $buyer));
             }
         }

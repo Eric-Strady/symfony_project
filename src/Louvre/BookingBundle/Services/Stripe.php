@@ -26,47 +26,38 @@ class Stripe
 		}
 		catch(\Stripe\Error\Card $e)
 		{
-			$message = $this->getMessage($e);
+			$message = 'Pour une raison inconnue, votre carte n\'a pas pu être débitée !';
 			return $message;
 		}
 		catch (\Stripe\Error\RateLimit $e)
 		{
-			$message = $this->getMessage($e);
+			$message = 'Impossible d\'effectuer le paiement !';
 			return $message;
 		}
 		catch (\Stripe\Error\InvalidRequest $e)
 		{
-			$message = $this->getMessage($e);
+			$message = 'Impossible d\'effectuer le paiement !';
 			return $message;
 		}
 		catch (\Stripe\Error\Authentication $e)
 		{
-			$message = $this->getMessage($e);
+			$message = 'Impossible d\'effectuer le paiement !';
 			return $message;
 		}
 		catch (\Stripe\Error\ApiConnection $e)
 		{
-			$message = $this->getMessage($e);
+			$message = 'Impossible d\'effectuer le paiement !';
 			return $message;
 		}
 		catch (\Stripe\Error\Base $e)
 		{
-			$message = $this->getMessage($e);
+			$message = 'Impossible d\'effectuer le paiement !';
 			return $message;
 		}
 		catch (Exception $e)
 		{
-			$message = $this->getMessage($e);
+			$message = 'Impossible d\'effectuer le paiement !';
 			return $message;
 		}
-	}
-
-	private function getMessage($error)
-	{
-		$body = $error->getJsonBody();
-		$err  = $body['error'];
-		$message = $err['message'];
-
-		return $message;
 	}
 }
