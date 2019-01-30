@@ -14,7 +14,7 @@ class CalculatePriceTest extends KernelTestCase
     }
 
 	/**
-     * @dataProvider PriceBookingProvider
+     * @dataProvider priceBookingProvider
      */
     public function testPriceIsCorrect($birthdate, $reducedPrice, $testPrice)
     {
@@ -28,7 +28,7 @@ class CalculatePriceTest extends KernelTestCase
     	$this->assertEquals($testPrice, $price);
     }
 
-    public function PriceBookingProvider()
+    public function priceBookingProvider()
     {
         return [
 	        [new \DateTime('01-01-2016'), false, 0],
