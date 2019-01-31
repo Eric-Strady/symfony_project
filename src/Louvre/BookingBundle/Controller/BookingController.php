@@ -57,8 +57,8 @@ class BookingController extends Controller
 
             $dateVisit = $buyer->getDate()->format('d/m');
             $today = $currentDate->format('d/m');
-
-            if ($dateVisit == $today && $buyer->getTypeTicket() === 'BJ')
+            $todayHour = $currentDate->format('H');
+            if ($dateVisit == $today && $todayHour >= 14 && $buyer->getTypeTicket() === 'BJ')
             {
                 $request->getSession()->getFlashBag()->add('wrongData', 'Vous passez commande après 14h00 ! Seul le billet demi-journée est valide.');
                 return $this->render('@LouvreBooking/layout.html.twig', array('form' => $form->createView(), 'daysOff' => $daysOff));
