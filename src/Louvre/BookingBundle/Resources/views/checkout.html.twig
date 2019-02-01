@@ -89,5 +89,8 @@
 
 {% block scripts %}
 	{{ parent() }}
+    <script type="text/javascript">
+        var totalPrice = {{ buyer.totalPrice }}
+    </script>
 	<script type="text/javascript" src="{{ asset('js/checkout.js') }}"></script>
 {% endblock %}
