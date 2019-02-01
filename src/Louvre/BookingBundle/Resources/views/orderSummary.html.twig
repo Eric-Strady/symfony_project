@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="{{ absolute_url(asset('images/logo.png')) }}">
+	<img src="{{ absolute_url(asset('images/logo.png')) }}" title="Logo du musée du Louvre" height="40" width="100">
     <h3>Musée du Louvre - Confirmation de réservation:</h3>
     <p>Numéro de réservation: {{ buyer.bookingNumber }}<br/>
     Date de la visite: {{ buyer.date|date("d/m/Y") }}
@@ -11,7 +11,7 @@
     		<li>
     			{{ booking.firstName }} {{ booking.lastName }}: un 
     			{% if buyer.typeTicket is same as('BJ') %} Billet Journée{% else %} Billet Demi-journée{% endif %} au tarif 
-    			{% if booking.price is same as(0) %} moins de 4 ans{% elseif booking.price is same as(8) %} enfant{% elseif booking.price is same as(10) %} réduit{% elseif booking.price is same as(12) %} normal{% else %} senior{% endif %} (soit 
+    			{% if booking.price is same as(0) %} moins de 4 ans{% elseif booking.price is same as(8) %} enfant{% elseif booking.price is same as(10) %} réduit{% elseif booking.price is same as(16) %} normal{% else %} senior{% endif %} (soit 
     			{% if booking.price is same as(0) %} 0{% elseif booking.price is same as(8) %} 8{% elseif booking.price is same as(10) %} 10{% elseif booking.price is same as(12) %} 12{% else %} 16{% endif %} €)
     		</li>
     	{% endfor %}
