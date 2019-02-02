@@ -45,5 +45,5 @@
 }
 
 @media all and (max-width : 400px) {
-
+  header.masthead .masthead-content .masthead-heading{font-size:3rem!important;}
 }
